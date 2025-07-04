@@ -1,0 +1,199 @@
+services:
+  # Tailnet 1 - Exit Node 1
+  socks5-tailnet1-exit1:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+    container_name: socks5-tailnet1-exit1
+    hostname: socks5-tailnet1-exit1
+    environment:
+      - TS_DISABLE_BOOTSTRAP_DNS=1
+      - TS_NO_IPV6=1
+      - TS_USERSPACE=true
+      - TS_STATE_DIR=/var/lib/tailscale
+      - TS_AUTHKEY=${TS_AUTHKEY_TAILNET1}
+      - TS_LOGIN_SERVER=${HEADSCALE_URL_TAILNET1}
+      - TS_EXIT_NODE=${TAILNET1_EXITNODE1}
+      - TS_HOSTNAME=socks5-tailnet1-exit1
+      - TS_SOCKS5_PORT=1080
+      - TS_TAGS=${DEFAULT_TAGS}
+      - TS_ACCEPT_ROUTES=${DEFAULT_ACCEPT_ROUTES}
+      - TS_ACCEPT_DNS=${DEFAULT_ACCEPT_DNS}
+      - TS_EXIT_NODE_ALLOW_LAN=${DEFAULT_EXIT_NODE_ALLOW_LAN}
+    volumes:
+      - tailnet1-exit1-state:/var/lib/tailscale
+    ports:
+      - "127.0.0.1:1081:1080"
+    healthcheck:
+      test: ["CMD-SHELL", "ping -c 1 1.1.1.1 || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    restart: unless-stopped
+    dns:
+      - 1.1.1.1
+      - 8.8.8.8
+    labels:
+      - "proxy.description=Your SOCKS5 Proxy 1"
+
+  # Tailnet 1 - Exit Node 2
+  socks5-tailnet1-exit2:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+    container_name: socks5-tailnet1-exit2
+    hostname: socks5-tailnet1-exit2
+    environment:
+      - TS_DISABLE_BOOTSTRAP_DNS=1
+      - TS_NO_IPV6=1
+      - TS_USERSPACE=true
+      - TS_STATE_DIR=/var/lib/tailscale
+      - TS_AUTHKEY=${TS_AUTHKEY_TAILNET1}
+      - TS_LOGIN_SERVER=${HEADSCALE_URL_TAILNET1}
+      - TS_EXIT_NODE=${TAILNET1_EXITNODE2}
+      - TS_HOSTNAME=socks5-tailnet1-exit2
+      - TS_SOCKS5_PORT=1080
+      - TS_TAGS=${DEFAULT_TAGS}
+      - TS_ACCEPT_ROUTES=${DEFAULT_ACCEPT_ROUTES}
+      - TS_ACCEPT_DNS=${DEFAULT_ACCEPT_DNS}
+      - TS_EXIT_NODE_ALLOW_LAN=${DEFAULT_EXIT_NODE_ALLOW_LAN}
+    volumes:
+      - tailnet1-exit2-state:/var/lib/tailscale
+    ports:
+      - "127.0.0.1:1082:1080"
+    healthcheck:
+      test: ["CMD-SHELL", "ping -c 1 1.1.1.1 || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    restart: unless-stopped
+    dns:
+      - 1.1.1.1
+      - 8.8.8.8
+    labels:
+      - "proxy.description=Your SOCKS5 Proxy 2"
+
+  # Tailnet 2 - Exit Node 1
+  socks5-tailnet2-exit1:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+    container_name: socks5-tailnet2-exit1
+    hostname: socks5-tailnet2-exit1
+    environment:
+      - TS_DISABLE_BOOTSTRAP_DNS=1
+      - TS_NO_IPV6=1
+      - TS_USERSPACE=true
+      - TS_STATE_DIR=/var/lib/tailscale
+      - TS_AUTHKEY=${TS_AUTHKEY_TAILNET2}
+      - TS_LOGIN_SERVER=${HEADSCALE_URL_TAILNET2}
+      - TS_EXIT_NODE=${TAILNET2_EXITNODE1}
+      - TS_HOSTNAME=socks5-tailnet2-exit1
+      - TS_SOCKS5_PORT=1080
+      - TS_TAGS=${DEFAULT_TAGS}
+      - TS_ACCEPT_ROUTES=${DEFAULT_ACCEPT_ROUTES}
+      - TS_ACCEPT_DNS=${DEFAULT_ACCEPT_DNS}
+      - TS_EXIT_NODE_ALLOW_LAN=${DEFAULT_EXIT_NODE_ALLOW_LAN}
+    volumes:
+      - tailnet2-exit1-state:/var/lib/tailscale
+    ports:
+      - "127.0.0.1:1083:1080"
+    healthcheck:
+      test: ["CMD-SHELL", "ping -c 1 1.1.1.1 || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    restart: unless-stopped
+    dns:
+      - 1.1.1.1
+      - 8.8.8.8
+    labels:
+      - "proxy.description=Your SOCKS5 Proxy 3"
+
+  # Tailnet 2 - Exit Node 2
+  socks5-tailnet2-exit2:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+    container_name: socks5-tailnet2-exit2
+    hostname: socks5-tailnet2-exit2
+    environment:
+      - TS_DISABLE_BOOTSTRAP_DNS=1
+      - TS_NO_IPV6=1
+      - TS_USERSPACE=true
+      - TS_STATE_DIR=/var/lib/tailscale
+      - TS_AUTHKEY=${TS_AUTHKEY_TAILNET2}
+      - TS_LOGIN_SERVER=${HEADSCALE_URL_TAILNET2}
+      - TS_EXIT_NODE=${TAILNET2_EXITNODE2}
+      - TS_HOSTNAME=socks5-tailnet2-exit2
+      - TS_SOCKS5_PORT=1080
+      - TS_TAGS=${DEFAULT_TAGS}
+      - TS_ACCEPT_ROUTES=${DEFAULT_ACCEPT_ROUTES}
+      - TS_ACCEPT_DNS=${DEFAULT_ACCEPT_DNS}
+      - TS_EXIT_NODE_ALLOW_LAN=${DEFAULT_EXIT_NODE_ALLOW_LAN}
+    volumes:
+      - tailnet2-exit2-state:/var/lib/tailscale
+    ports:
+      - "127.0.0.1:1084:1080"
+    healthcheck:
+      test: ["CMD-SHELL", "ping -c 1 1.1.1.1 || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    restart: unless-stoppedw 
+    dns:
+      - 1.1.1.1
+      - 8.8.8.8
+    labels:
+      - "proxy.description=Your SOCKS5 Proxy 4"
+
+
+  # Tailnet 2 - Exit Node 3
+  socks5-tailnet2-exit3:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+    container_name: socks5-tailnet2-exit3
+    hostname: socks5-tailnet2-exit3
+    environment:
+      - TS_DISABLE_BOOTSTRAP_DNS=1
+      - TS_NO_IPV6=1
+      - TS_USERSPACE=true
+      - TS_STATE_DIR=/var/lib/tailscale
+      - TS_AUTHKEY=${TS_AUTHKEY_TAILNET2}
+      - TS_LOGIN_SERVER=${HEADSCALE_URL_TAILNET2}
+      - TS_EXIT_NODE=${TAILNET2_EXITNODE3}
+      - TS_HOSTNAME=socks5-tailnet2-exit3
+      - TS_SOCKS5_PORT=1080
+      - TS_TAGS=${DEFAULT_TAGS}
+      - TS_ACCEPT_ROUTES=${DEFAULT_ACCEPT_ROUTES}
+      - TS_ACCEPT_DNS=${DEFAULT_ACCEPT_DNS}
+      - TS_EXIT_NODE_ALLOW_LAN=${DEFAULT_EXIT_NODE_ALLOW_LAN}
+    volumes:
+      - tailnet2-exit3-state:/var/lib/tailscale
+    ports:
+      - "127.0.0.1:1085:1080"
+    healthcheck:
+      test: ["CMD-SHELL", "ping -c 1 1.1.1.1 || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    restart: unless-stopped
+    dns:
+      - 1.1.1.1
+      - 8.8.8.8
+    labels:
+      - "proxy.description=Your SOCKS5 Proxy 5"
+
+volumes:
+  tailnet1-exit1-state:
+  tailnet1-exit2-state:
+  tailnet2-exit1-state:
+  tailnet2-exit2-state:
+  tailnet2-exit3-state:
+  tailnet1-direct-state:
