@@ -28,6 +28,7 @@ tailscale up \
     --accept-routes=${TS_ACCEPT_ROUTES} \
     --accept-dns=${TS_ACCEPT_DNS} \
     --exit-node-allow-lan-access=${TS_EXIT_NODE_ALLOW_LAN} \
+    --force-reauth \
     $([ -n "${TS_EXIT_NODE}" ] && echo "--exit-node=${TS_EXIT_NODE}")
 
 echo "[init] SOCKS5 proxy available on port ${TS_SOCKS5_PORT}"
