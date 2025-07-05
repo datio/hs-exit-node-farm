@@ -16,12 +16,19 @@ const FETCH_TIMEOUT = 30000;
 const getIp = async (agent) => {
     try {
         const startTime = Date.now();
-        const response = await fetch('https://api.ipify.org', { agent, timeout: FETCH_TIMEOUT });
+        // If an agent is passed, it's a proxy check. Otherwise, it's a host IP check.
+        const curlCommand = agent 
+            ? `curl --socks5 ${agent.proxy.host}:${agent.proxy.port} https://api4.ipify.org`
+            : 'curl https://api4.ipify.org';
+
+        const { stdout } = await execAsync(curlCommand, { timeout: FETCH_TIMEOUT });
         const latency = Date.now() - startTime;
-        if (!response.ok) {
-            throw new Error(`Failed to fetch IP: ${response.statusText}`);
+        const ip = stdout.trim();
+        
+        if (!ip) {
+            throw new Error('Failed to get IP from curl command');
         }
-        const ip = await response.text();
+        
         return { ip, latency };
     } catch (error) {
         console.error(chalk.red(`Error getting IP: ${error.message}`));

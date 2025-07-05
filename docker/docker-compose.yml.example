@@ -19,11 +19,11 @@ services:
       - TS_TAGS=${DEFAULT_TAGS}
       - TS_ACCEPT_ROUTES=${DEFAULT_ACCEPT_ROUTES}
       - TS_ACCEPT_DNS=${DEFAULT_ACCEPT_DNS}
-      - TS_EXIT_NODE_ALLOW_LAN=${DEFAULT_EXIT_NODE_ALLOW_LAN}
+      - TS_EXIT_NODE_ALLOW_LAN=true
     volumes:
       - tailnet1-exit1-state:/var/lib/tailscale
     ports:
-      - "127.0.0.1:1081:1080"
+      - "0.0.0.0:1081:1080"
     healthcheck:
       test: ["CMD-SHELL", "ping -c 1 1.1.1.1 || exit 1"]
       interval: 30s
@@ -57,11 +57,11 @@ services:
       - TS_TAGS=${DEFAULT_TAGS}
       - TS_ACCEPT_ROUTES=${DEFAULT_ACCEPT_ROUTES}
       - TS_ACCEPT_DNS=${DEFAULT_ACCEPT_DNS}
-      - TS_EXIT_NODE_ALLOW_LAN=${DEFAULT_EXIT_NODE_ALLOW_LAN}
+      - TS_EXIT_NODE_ALLOW_LAN=true
     volumes:
       - tailnet1-exit2-state:/var/lib/tailscale
     ports:
-      - "127.0.0.1:1082:1080"
+      - "0.0.0.0:1082:1080"
     healthcheck:
       test: ["CMD-SHELL", "ping -c 1 1.1.1.1 || exit 1"]
       interval: 30s
@@ -95,11 +95,11 @@ services:
       - TS_TAGS=${DEFAULT_TAGS}
       - TS_ACCEPT_ROUTES=${DEFAULT_ACCEPT_ROUTES}
       - TS_ACCEPT_DNS=${DEFAULT_ACCEPT_DNS}
-      - TS_EXIT_NODE_ALLOW_LAN=${DEFAULT_EXIT_NODE_ALLOW_LAN}
+      - TS_EXIT_NODE_ALLOW_LAN=true
     volumes:
       - tailnet2-exit1-state:/var/lib/tailscale
     ports:
-      - "127.0.0.1:1083:1080"
+      - "0.0.0.0:1083:1080"
     healthcheck:
       test: ["CMD-SHELL", "ping -c 1 1.1.1.1 || exit 1"]
       interval: 30s
@@ -133,11 +133,11 @@ services:
       - TS_TAGS=${DEFAULT_TAGS}
       - TS_ACCEPT_ROUTES=${DEFAULT_ACCEPT_ROUTES}
       - TS_ACCEPT_DNS=${DEFAULT_ACCEPT_DNS}
-      - TS_EXIT_NODE_ALLOW_LAN=${DEFAULT_EXIT_NODE_ALLOW_LAN}
+      - TS_EXIT_NODE_ALLOW_LAN=true
     volumes:
       - tailnet2-exit2-state:/var/lib/tailscale
     ports:
-      - "127.0.0.1:1084:1080"
+      - "0.0.0.0:1084:1080"
     healthcheck:
       test: ["CMD-SHELL", "ping -c 1 1.1.1.1 || exit 1"]
       interval: 30s
@@ -172,11 +172,11 @@ services:
       - TS_TAGS=${DEFAULT_TAGS}
       - TS_ACCEPT_ROUTES=${DEFAULT_ACCEPT_ROUTES}
       - TS_ACCEPT_DNS=${DEFAULT_ACCEPT_DNS}
-      - TS_EXIT_NODE_ALLOW_LAN=${DEFAULT_EXIT_NODE_ALLOW_LAN}
+      - TS_EXIT_NODE_ALLOW_LAN=true
     volumes:
       - tailnet2-exit3-state:/var/lib/tailscale
     ports:
-      - "127.0.0.1:1085:1080"
+      - "0.0.0.0:1085:1080"
     healthcheck:
       test: ["CMD-SHELL", "ping -c 1 1.1.1.1 || exit 1"]
       interval: 30s
